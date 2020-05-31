@@ -51,7 +51,7 @@ class CmsBlockStorageBusinessFactory extends AbstractBusinessFactory
     /**
      * @return \Spryker\Zed\Store\Business\StoreFacadeInterface
      */
-    public function getStoreFacade(): StoreFacadeInterface
+    protected function getStoreFacade(): StoreFacadeInterface
     {
         return $this->getProvidedDependency(CmsBlockStorageDependencyProvider::FACADE_STORE);
     }
