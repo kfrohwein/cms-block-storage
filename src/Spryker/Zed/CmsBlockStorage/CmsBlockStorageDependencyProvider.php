@@ -25,7 +25,7 @@ class CmsBlockStorageDependencyProvider extends AbstractBundleDependencyProvider
     public const FACADE_EVENT_BEHAVIOUR = 'FACADE_EVENT_BEHAVIOR';
     public const FACADE_EVENT_BEHAVIOR = 'FACADE_EVENT_BEHAVIOR';
     public const PLUGIN_CONTENT_WIDGET_DATA_EXPANDER = 'PLUGIN_CONTENT_WIDGET_DATA_EXPANDER';
-    public const STORE = 'store';
+    public const FACADE_STORE = 'FACADE_STORE';
 
     /**
      * @param \Spryker\Zed\Kernel\Container $container
@@ -100,11 +100,11 @@ class CmsBlockStorageDependencyProvider extends AbstractBundleDependencyProvider
      *
      * @return \Spryker\Zed\Kernel\Container
      */
-    protected function addStore(Container $container)
+    protected function addStoreFacade(Container $container): Container
     {
-        $container[static::STORE] = function () {
-            return Store::getInstance();
-        };
+        $container->set(static::FACADE_STORE, function (Container $container) {
+            return $container->getLocator()->store()->facade();
+        });
 
         return $container;
     }
